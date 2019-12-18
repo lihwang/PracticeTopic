@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装队列</title>
+</head>
+
+<body>
+    <script>
+        function Queue() {
+            this.items = [];
+        }
+        // 添加
+        Queue.prototype.enqueue = function (element) {
+            this.items.push(element);
+        }
+        // 删除
+        Queue.prototype.dequeue = function () {
+            this.items.shift();
+        }
+        // 查看第一个
+        Queue.prototype.front = function () {
+            return this.items[0];
+        }
+        // 4.判断栈是否为空
+        Queue.prototype.isEmpty = function (element) {
+            return this.items.length == 0;
+        }
+        // 5.查看栈中元素个数
+        Queue.prototype.size = function (element) {
+            return this.items.length;
+        }
+        // 6.toString方法
+        Queue.prototype.toString = function (element) {
+            var resultString = '';
+            for (var i = 0; i < this.items.length; i++) {
+                resultString += this.items[i] + '';
+            }
+            return resultString;
+        }
+
+
+        // 面试算法题：击鼓传花
+    </script>
+</body>
+
+</html>
