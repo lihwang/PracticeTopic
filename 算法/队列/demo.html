@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>封装队列</title>
 </head>
-
+<!-- 
+    普通队列插入元素会被放在后端，需要前面所有的元素处理元
+ -->
 <body>
     <script>
         function Queue() {
@@ -19,7 +21,7 @@
         }
         // 删除
         Queue.prototype.dequeue = function () {
-            this.items.shift();
+           return this.items.shift();
         }
         // 查看第一个
         Queue.prototype.front = function () {
@@ -44,6 +46,33 @@
 
 
         // 面试算法题：击鼓传花
+        // 几个人围成一圈开始数数，数到某个数就淘汰最后的那个人获胜，最后那个人原来的位置
+        
+        // 思路[1,2,3,4,5,6]当数到1时出队列（删除），然后入队列（增加），执行次数到到指定数时只删除不入然后继续直到栈中的个数为1
+
+        function passGage(nameList,num){
+            //创建队列
+            var queue=new Queue();
+            //依次入队列
+            for(var i=0;i<nameList.length;i++){
+                queue.enqueue(nameList[i]);
+            }
+            
+          
+            while(queue.size()>1){
+                for(var i=0;i<num-1;i++){
+                    queue.enqueue(queue.dequeue());
+                }
+                queue.dequeue();
+            }
+            alert(queue.size());
+            var endName=queue.front();
+            alert(endName);
+            return nameList.indexOf(endName)
+        }
+
+        var names=['lili','tom','why','anna','toms','dedo'];
+        alert(passGage(names,5))
     </script>
 </body>
 
